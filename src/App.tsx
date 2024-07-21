@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import BeforeUpload from './components/File';
-import Data from './components/Data';
+// import Data from './components/Data';
 import DataC from './components/Data';
 type Data = string[];
 function App() {

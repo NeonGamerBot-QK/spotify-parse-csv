@@ -1,4 +1,4 @@
-import { FileInput, Hero } from "react-daisyui";
+import { Button, FileInput, Hero } from "react-daisyui";
 import parseCSV from "../parse-csv";
 
 export default function BeforeUpload({ setData  }: any) {
@@ -16,6 +16,17 @@ console.log(t,csv)
 setData(csv)
     }
 }} />
+<div className="mt-5 p-5 gap-2">
+    <a className="btn btn-secondary" target="_blank" href="./template.csv" download={true}>Download Template </a>
+    <Button onClick={() => {
+        fetch('./example.csv').then(r=>r.text()).then(async t => {
+            // const t = await e.target.files[0].text()
+            const csv = parseCSV(t)
+            console.log(t,csv)
+            setData(csv)
+        })
+    }}>Use example file</Button>
+</div>
 </div>
 </Hero.Content>
 </div>

@@ -10,6 +10,8 @@ const [content,setContent] = useState<any>(null)
     return <div>
         <div>
             <Button onClick={() => setContent(<TableOfIt data={data} />)}> Show Table</Button>
+{content ? 
+            <Button onClick={() => setContent(null)}> Remove items </Button>:null}
         </div>
         <div>
             {content}
