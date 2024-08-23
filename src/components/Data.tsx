@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { Button, Table } from "react-daisyui";
-
+import { formatUptime} from "@neongamerbot/utils"
 type Data = string[];
-
+// TODO: get most listend, artist, song, album. 
+// TODO: AI Summary :P
 export default function DataC({ data }: { data: Data[] }) {
-    data = data.slice(1)
+    const headerValues = data.shift()
     // .. const [album, artist, cover, DurationMS, DurationStamp, playDate, relaseDate, songUri, trackName] = arr
 const [content,setContent] = useState<any>(null)
+const [calcTime, setCalcTime] = useState(data.map(i=>parseInt(i[3])).reduce((a,b) => a+b))
+
     return <div>
         <div>
             <Button onClick={() => setContent(<TableOfIt data={data} />)}> Show Table</Button>
 {content ? 
             <Button onClick={() => setContent(null)}> Remove items </Button>:null}
+            <p>Total song listen time (unfiltered): {formatUptime(calcTime / 1000)} </p>
         </div>
         <div>
             {content}
@@ -21,6 +25,8 @@ const [content,setContent] = useState<any>(null)
 function TableOfIt({ data: d }: { data: Data[] }) {
     const [data,setData] = useState(d);
     console.log(data)
+    // @ts-ignore
+    window.current_data = data;
 return <>
 <div>
 {/* <Button>Filter By Artist</Button> */}
