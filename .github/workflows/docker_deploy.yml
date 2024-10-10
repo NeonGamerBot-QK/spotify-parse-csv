@@ -28,5 +28,5 @@ jobs:
       - name: Build the Docker image
         if: ${{ steps.zeonallowed.outputs.skip == 'false' }}
         run: |
-          docker build . --tag ghcr.io/neongamerbot-qk/spotify-parse-csvlatest >> $GITHUB_STEP_SUMMARY
+          docker build . --tag ghcr.io/neongamerbot-qk/spotify-parse-csv:latest >> $GITHUB_STEP_SUMMARY
           docker push ghcr.io/neongamerbot-qk/spotify-parse-csv:latest >> $GITHUB_STEP_SUMMARY
